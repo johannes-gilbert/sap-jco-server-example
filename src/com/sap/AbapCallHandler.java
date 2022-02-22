@@ -1,6 +1,6 @@
 package com.sap;
 
-import javax.ws.rs.ProcessingException;
+import java.io.IOException;
 
 import org.apache.log4j.Logger;
 
@@ -53,9 +53,9 @@ public class AbapCallHandler implements JCoServerFunctionHandler {
 		String payload = null;
 		try {
 			payload = main.invokeGet(uri);
-		} catch(ProcessingException pe) {
+		} catch(IOException | InterruptedException e) {
 			// Provide the exception as payload.
-			payload = pe.getMessage();
+			payload = e.getMessage();
 		}
 		// Provide the payload as exporting parameter.
         function.getExportParameterList().setValue("EV_RESPONSE_PAYLOAD", payload);

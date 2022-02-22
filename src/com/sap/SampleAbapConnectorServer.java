@@ -31,14 +31,23 @@ public class SampleAbapConnectorServer implements JCoServerErrorListener, JCoSer
 	 */
     private Properties properties;
     
-    public SampleAbapConnectorServer(String propertiesPath) throws IOException {
+    private void initialize(String propertiesPath) throws IOException {
     	InputStream propertiesInputStream = new FileInputStream(propertiesPath);
     	properties = new Properties();
     	properties.load(propertiesInputStream);
     	
+    	// Set runtime arguments since some of the JCo-properties need to be passed the the VM 
+    	// and simply passing them to JCo won't have any effects. 
+    	logger.info("Setting VM argument jco.trace_path to value '"+properties.get("jco.trace_path").toString()+"'");
+    	System.setProperty("jco.trace_path", properties.get("jco.trace_path").toString());
+    	logger.info("Setting VM argument jco.trace_level to value '"+properties.get("jco.trace_level").toString()+"'");
+    	System.setProperty("jco.trace_level", properties.get("jco.trace_level").toString());
+    	logger.info("Setting VM argument jrfc.trace to value '"+properties.get("jrfc.trace").toString()+"'");
+    	System.setProperty("jrfc.trace", properties.get("jrfc.trace").toString());
+    	
 		new MyDestinationDataProvider(properties);
-		new MyServerDataProvider(properties);
-	}
+		new MyServerDataProvider(properties);    	
+    }
     
     /**
      * Runnable to listen to the standard input stream to end the server.
@@ -65,7 +74,8 @@ public class SampleAbapConnectorServer implements JCoServerErrorListener, JCoSer
 	
 	private JCoServer server;
    
-    public void serve() {
+    public void serve(String propertiesPath) throws IOException {
+    	initialize(propertiesPath);
         try {
             server = JCoServerFactory.getServer(properties.getProperty(ServerDataProvider.JCO_PROGID));
         } catch(JCoException e) {
@@ -124,6 +134,6 @@ public class SampleAbapConnectorServer implements JCoServerErrorListener, JCoSer
     		logger.error("You must specify a properties file!");
     		return;
     	}
-    	new SampleAbapConnectorServer(args[0]).serve();
+    	new SampleAbapConnectorServer().serve(args[0]);
     }
 }
