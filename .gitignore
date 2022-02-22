@@ -9,3 +9,7 @@ buildNumber.properties
 .mvn/timing.properties
 # https://github.com/takari/maven-wrapper#usage-without-binary-jar
 .mvn/wrapper/maven-wrapper.jar
+myjco.properties
+sapjco3-ntamd64-3.1.4.zip
+sapjco31P_4-20009381.zip
+test/
