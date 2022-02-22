@@ -1,7 +1,7 @@
 # sap-jco-server-example
 Complete and running example of a JCo Server-based scenario to make an RFC from ABAP to Java
 
-![](SAP JCo Server Example.png)
+![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/SAP%20JCo%20Server%20Example.png)
 
 ## Complie
 
