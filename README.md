@@ -208,7 +208,7 @@ IF sy-subrc NE 0.
 ELSE.
 * Display the result. In the exmaple we are expecting that the HTTP-get
 * call - done by the JCo server - results in a XML response. We retrieved it from
-* the JCo server (via ev_response_payload) and want to display it here in the ABAP backend.
+* the JCo server (via RESPONSE_PAYLOAD) and want to display it here in the ABAP backend.
   cl_demo_output=>display_xml( payload ).
 ENDIF.
 ````
