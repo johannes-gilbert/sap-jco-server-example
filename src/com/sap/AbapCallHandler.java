@@ -45,7 +45,7 @@ public class AbapCallHandler implements JCoServerFunctionHandler {
         printRequestInformation(serverCtx, function);
 
         // Get the URI provided from Abap.
-        String uri = function.getImportParameterList().getString("IV_URI");
+        String uri = function.getImportParameterList().getString("URI");
         
 		HttpCaller main = new HttpCaller();
 		main.initializeSslContext();
@@ -58,6 +58,6 @@ public class AbapCallHandler implements JCoServerFunctionHandler {
 			payload = e.getMessage();
 		}
 		// Provide the payload as exporting parameter.
-        function.getExportParameterList().setValue("EV_RESPONSE_PAYLOAD", payload);
+        function.getExportParameterList().setValue("RESPONSE_PAYLOAD", payload);
     }
 }
