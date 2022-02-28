@@ -153,9 +153,10 @@ Server with program ID 'JCO_SERVER' is running
 Notes:
 * When you specify the `-jar` option then the `-cp` parameter will be ignored ([refer to the documentation](https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/java.html#jar)).
 * It is not allowed to include the `sapjco*.jar` into other jar-files. Otherwise you will get the error: 
-    ````shell
+````shell
 Exception in thread "main" java.lang.ExceptionInInitializerError: JCo initialization failed with java.lang.ExceptionInInitializerError: Illegal JCo archive "sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar". It is not allowed to rename or repackage the original archive "sapjco3.jar".
-    ```` 
+````
+
 * I found that the VM-parameter `-Djava.library.path=...` has no impact. Hence, Java does not find SAP Jco.
 
 **Connection test**
