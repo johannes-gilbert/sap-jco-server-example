@@ -136,7 +136,7 @@ java -cp sap-jco-server-example-1.0-jar-with-dependencies.jar;C:/data/sapjco3.ja
 You will see the following output:
 
 ````shell
->java -cp sap-jco-server-example-1.0-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\myjco.properties
+>java -cp sap-jco-server-example-1.0-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\jco.properties
 Setting VM argument jco.trace_path to value 'C:/xxxxxx/sap-jco-server-example/test'
 Setting VM argument jco.trace_level to value '8'
 Setting VM argument jrfc.trace to value '1'
@@ -209,7 +209,7 @@ ELSE.
 * Display the result. In the exmaple we are expecting that the HTTP-get
 * call - done by the JCo server - results in a XML response. We retrieved it from
 * the JCo server (via ev_response_payload) and want to display it here in the ABAP backend.
-  cl_demo_output=>display_html( html = payload ).
+  cl_demo_output=>display_xml( payload ).
 ENDIF.
 ````
 
