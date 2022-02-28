@@ -158,9 +158,26 @@ Exception in thread "main" java.lang.ExceptionInInitializerError: JCo initializa
     ```` 
 * I found that the VM-parameter `-Djava.library.path=...` has no impact. Hence, Java does not find SAP Jco.
 
+**Connection test**
+
+Once the server is started, a connection test via transaction `SM59` should be successful.
+
+![](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/screenshot_sm59_connection_test.jpg)
+
 **Stop the server**
 
 The CLI program listens to input from the command line. The server can be stopped by typing `end` or `END` and pressing `ENTER` (⏎).
+
+````shell
+end
+Server state changed from ALIVE to STOPPING on server with program id JCO_SERVER
+Server state changed from STOPPING to STOPPED on server with program id JCO_SERVER
+Exit program
+
+>
+````
+
+
 
 ## ABAP program
 
