@@ -30,7 +30,7 @@
 							<archive>
 								<manifest>
 									<mainClass>
-										de.efghaigerseelbach.Main
+										com.sap.SampleAbapConnectorServer
 									</mainClass>
 								</manifest>
 							</archive>
