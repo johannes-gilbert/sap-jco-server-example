@@ -130,13 +130,13 @@ Hence, it is necessary to create a stub-like function module in the ABAP system 
 Execute the following command: 
 
 ````shell
-java -cp sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\jco.properties
+java -cp sap-jco-server-example-1.0-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\jco.properties
 ````
 
 You will see the following output:
 
 ````shell
->java -cp sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\myjco.properties
+>java -cp sap-jco-server-example-1.0-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\myjco.properties
 Setting VM argument jco.trace_path to value 'C:/xxxxxx/sap-jco-server-example/test'
 Setting VM argument jco.trace_level to value '8'
 Setting VM argument jrfc.trace to value '1'
