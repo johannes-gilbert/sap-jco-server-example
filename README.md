@@ -3,6 +3,18 @@ Complete and running example of a JCo Server-based scenario to make an RFC from 
 
 ![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/SAP%20JCo%20Server%20Example.png)
 
+* [Installation / Pre-requisites](https://github.com/johannes-gilbert/sap-jco-server-example#installation--pre-requisites)
+    * [Maven](https://github.com/johannes-gilbert/sap-jco-server-example#maven)
+    * [SAP JCo](https://github.com/johannes-gilbert/sap-jco-server-example#sap-jco)
+* [Compile](https://github.com/johannes-gilbert/sap-jco-server-example#compile)
+* [Setup](https://github.com/johannes-gilbert/sap-jco-server-example#setup)
+    * [SM59 destination](https://github.com/johannes-gilbert/sap-jco-server-example#sm59-destination)
+    * [RFC-enabled function module](https://github.com/johannes-gilbert/sap-jco-server-example#rfc-enabled-function-module)
+* [Running the server](https://github.com/johannes-gilbert/sap-jco-server-example#running-the-server)
+* [ABAP program](https://github.com/johannes-gilbert/sap-jco-server-example#abap-program)
+* [Traces](https://github.com/johannes-gilbert/sap-jco-server-example#traces)
+* [References](https://github.com/johannes-gilbert/sap-jco-server-example#references)
+
 ## Installation / Pre-requisites
 
 ### Maven
@@ -118,7 +130,7 @@ Hence, it is necessary to create a stub-like function module in the ABAP system 
 Execute `SampleAbapConnectorServer` with the name of the JCo properties (here `jco.properties`):
 
 ````shell
-java 
+java -jar sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar ..\jco.properties
 ````
 
 ## ABAP program
