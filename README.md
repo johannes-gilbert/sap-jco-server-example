@@ -127,11 +127,40 @@ Hence, it is necessary to create a stub-like function module in the ABAP system 
 
 ## Running the server
 
-Execute `SampleAbapConnectorServer` with the name of the JCo properties (here `jco.properties`):
+Execute the following command: 
 
 ````shell
-java -jar sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar ..\jco.properties
+java -cp sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\jco.properties
 ````
+
+You will see the following output:
+
+````shell
+>java -cp sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\myjco.properties
+Setting VM argument jco.trace_path to value 'C:/xxxxxx/sap-jco-server-example/test'
+Setting VM argument jco.trace_level to value '8'
+Setting VM argument jrfc.trace to value '1'
+There is no MyDestinationDataProvider registered so far. Registering a new instance.
+There is no MyServerDataProvider registered so far. Registering a new instance.
+Providing server properties for server 'JCO_SERVER' using the specified properties
+Providing destination properties for destination '' using the specified properties
+Server state changed from STOPPED to STARTED on server with program id JCO_SERVER
+The program can be stopped typing 'END'
+Server state changed from STARTED to ALIVE on server with program id JCO_SERVER
+Server with program ID 'JCO_SERVER' is running
+````
+
+Notes:
+* When you specify the `-jar` option then the `-cp` parameter will be ignored ([refer to the documentation](https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/java.html#jar)).
+* It is not allowed to include the `sapjco*.jar` into other jar-files. Otherwise you will get the error: 
+    ````shell
+Exception in thread "main" java.lang.ExceptionInInitializerError: JCo initialization failed with java.lang.ExceptionInInitializerError: Illegal JCo archive "sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar". It is not allowed to rename or repackage the original archive "sapjco3.jar".
+    ```` 
+* I found that the VM-parameter `-Djava.library.path=...` has no impact. Hence, Java does not find SAP Jco.
+
+**Stop the server**
+
+The CLI program listens to input from the command line. The server can be stopped by typing `end` or `END` and pressing `ENTER` (⏎).
 
 ## ABAP program
 
@@ -144,15 +173,15 @@ REPORT z_test_jco_server.
 DATA(rfc_destination) = VALUE rfcdest( ).
 rfc_destination = 'MY_JCO_SRV'.
 
-* Define the URI that should be called from the JCo server. So
+* Define the URL that should be called from the JCo server. So
 * to say this is just some data that is handed to the FM.
 DATA(url) = |https://docs.oasis-open.org/odata/odata-csdl-xml/v4.01/os/schemas/edm.xsd|. "https://server/path/to/resource|.
 
 DATA(payload) = ||.
 DATA(msg) = VALUE char255( ).
 
-* Call the FM remotely and hand the data (iv_uri), but
-* also retrieve the result (ev_response_payload).
+* Call the FM remotely and hand the data (URL), but
+* also retrieve the result (RESPONSE_PAYLOAD).
 CALL FUNCTION 'Z_SAMPLE_ABAP_CONNECTOR_CALL'
   DESTINATION rfc_destination
   EXPORTING
