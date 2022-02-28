@@ -7,6 +7,9 @@
 	<version>0.0.1-SNAPSHOT</version>
     <packaging>jar</packaging>
 	
+	<properties>
+     <sapjco3jar>C:/Daten/sapjco3.jar</sapjco3jar>
+  	</properties>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -33,6 +36,9 @@
 										com.sap.SampleAbapConnectorServer
 									</mainClass>
 								</manifest>
+								<manifestEntries>
+					            	<Class-Path>${sapjco3jar}</Class-Path>
+					            </manifestEntries>
 							</archive>
 							<descriptorRefs>
 								<descriptorRef>jar-with-dependencies</descriptorRef>
@@ -58,6 +64,11 @@
 		   <groupId>io.smallrye</groupId>
 		   <artifactId>smallrye-rest-client</artifactId>
 		   <version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.sap.conn.jco</groupId>
+			<artifactId>com.sap.conn.jco.sapjco3</artifactId>
+			<version>3.1.4</version>
 		</dependency>
 	</dependencies>
 </project>
