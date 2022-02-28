@@ -17,6 +17,5 @@
 			<attribute name="maven.pomderived" value="true"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Daten/eclipse_workspaces/sap-jco-server-example/sapjco3-ntamd64-3.1.4/sapjco3.jar"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
