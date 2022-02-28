@@ -154,7 +154,10 @@ Notes:
 * When you specify the `-jar` option then the `-cp` parameter will be ignored ([refer to the documentation](https://docs.oracle.com/javase/7/docs/technotes/tools/solaris/java.html#jar)).
 * It is not allowed to include the `sapjco*.jar` into other jar-files. Otherwise you will get the error: 
 ````shell
-Exception in thread "main" java.lang.ExceptionInInitializerError: JCo initialization failed with java.lang.ExceptionInInitializerError: Illegal JCo archive "sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar". It is not allowed to rename or repackage the original archive "sapjco3.jar".
+Exception in thread "main" java.lang.ExceptionInInitializerError: JCo initialization failed
+with java.lang.ExceptionInInitializerError: Illegal JCo archive
+"sap-jco-server-example-0.0.1-SNAPSHOT-jar-with-dependencies.jar". It is not allowed to rename 
+or repackage the original archive "sapjco3.jar".
 ````
 
 * I found that the VM-parameter `-Djava.library.path=...` has no impact. Hence, Java does not find SAP Jco.
@@ -180,7 +183,24 @@ Exit program
 
 
 
-## ABAP program
+## ABAP development objects
+
+In addition to the Java source code this repository also contains the required ABAP source code. The structure is as follows
+
+```
+$ZSAP_JCO_SERVER_EXAMPLE 
+│
+└───Programs
+│   └───Z_TEST_JCO_SERVER
+│   
+└───Function Groups
+    └───Z_TEST_JCO
+        │
+        └───Function Modules
+            └───Z_SAMPLE_ABAP_CONNECTOR_CALL
+```
+
+You can retrieve the ABAP development objects with [abapGit](https://github.com/abapGit/abapGit). If you want to proceed manually you need to create ABAP program `Z_TEST_JCO_SERVER` with the following source code:
 
 ````ABAP
 REPORT z_test_jco_server.
