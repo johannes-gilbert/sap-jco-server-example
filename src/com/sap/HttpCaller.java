@@ -60,12 +60,15 @@ public class HttpCaller {
 		System.setProperty ("http.proxyPort", "<port>");*/
 		    
 		// Build a client.
-		client = HttpClient.newBuilder().sslContext(context).build();
+		client = HttpClient.newBuilder()
+				.followRedirects(HttpClient.Redirect.ALWAYS)
+	            .version(HttpClient.Version.HTTP_1_1)
+				.sslContext(context).build();
 	}
 	
-	public String invokeGet(String uri) throws IOException, InterruptedException {
-		logger.info("URL: "+uri);
-		HttpRequest request = HttpRequest.newBuilder(URI.create(uri))
+	public String invokeGet(String url) throws IOException, InterruptedException {
+		logger.info("URL: "+url);
+		HttpRequest request = HttpRequest.newBuilder(URI.create(url))
 				.header("Accept","*/*")
 				.header("Accept-Language","de-DE,de;q=0.8,en-US;q=0.6,en;q=0.4")
 				.build();

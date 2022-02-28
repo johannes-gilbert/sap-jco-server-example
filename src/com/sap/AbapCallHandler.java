@@ -45,14 +45,15 @@ public class AbapCallHandler implements JCoServerFunctionHandler {
         printRequestInformation(serverCtx, function);
 
         // Get the URI provided from Abap.
-        String uri = function.getImportParameterList().getString("URI");
+        String url = function.getImportParameterList().getString("URL");
         
 		HttpCaller main = new HttpCaller();
 		main.initializeSslContext();
 		main.initializeClient();
 		String payload = null;
 		try {
-			payload = main.invokeGet(uri);
+			payload = main.invokeGet(url);
+			System.out.println(payload);
 		} catch(IOException | InterruptedException e) {
 			// Provide the exception as payload.
 			payload = e.getMessage();
