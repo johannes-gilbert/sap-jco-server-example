@@ -93,7 +93,7 @@ An SM59 destination is required. It allows the Java program to connected to the 
 ![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/screenshot_sm59_technical_settings.jpg)
 ![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/screenshot_sm59_logon_and_security.jpg)
 ![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/screenshot_sm59_unicode.jpg)
-![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/screenshot_sm59_special_options.jpg.jpg)
+![diagram](https://github.com/johannes-gilbert/sap-jco-server-example/blob/main/docs/screenshot_sm59_special_options.jpg)
 
 
 ### RFC-enabled function module
