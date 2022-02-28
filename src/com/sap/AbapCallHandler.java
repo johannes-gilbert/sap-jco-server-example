@@ -53,7 +53,6 @@ public class AbapCallHandler implements JCoServerFunctionHandler {
 		String payload = null;
 		try {
 			payload = main.invokeGet(url);
-			System.out.println(payload);
 		} catch(IOException | InterruptedException e) {
 			// Provide the exception as payload.
 			payload = e.getMessage();
