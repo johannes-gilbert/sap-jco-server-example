@@ -274,7 +274,7 @@ For more information refer to [JCo Exceptions](https://help.sap.com/viewer/1d057
 ## References
 * [JCo Exceptions](https://help.sap.com/viewer/1d057e05920c4fe38b88e33aaa9eb5ef/7.03.30/en-US/f6daea401675752ae10000000a155106.html) or navigate to [help.sap.com](https://help.sap.com) and search for 'JCo Exceptions'
 
-## Troubbleshooting
+## Troubleshooting
 
 __JCO_ERROR_FUNCTION_NOT_FOUND: 'Z_SAMPLE_ABAP_CONNECTOR_CALL' could not be found in the server repository.__
 
