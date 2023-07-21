@@ -14,6 +14,7 @@ Complete and running example of a JCo Server-based scenario to make an RFC from 
 * [ABAP program](https://github.com/johannes-gilbert/sap-jco-server-example#abap-program)
 * [Traces](https://github.com/johannes-gilbert/sap-jco-server-example#traces)
 * [References](https://github.com/johannes-gilbert/sap-jco-server-example#references)
+* [Troubleshooting](https://github.com/johannes-gilbert/sap-jco-server-example#troubleshooting)
 
 ## Installation / Pre-requisites
 
@@ -130,7 +131,7 @@ Hence, it is necessary to create a stub-like function module in the ABAP system 
 Execute the following command: 
 
 ````shell
-java -cp sap-jco-server-example-1.0-jar-with-dependencies.jar;C:/data/sapjco3.jar com.sap.SampleAbapConnectorServer ..\jco.properties
+java -cp "C:/data/sapjco3.jar;sap-jco-server-example-1.0-jar-with-dependencies.jar" com.sap.SampleAbapConnectorServer ..\jco.properties
 ````
 
 You will see the following output:
@@ -272,3 +273,25 @@ For more information refer to [JCo Exceptions](https://help.sap.com/viewer/1d057
 
 ## References
 * [JCo Exceptions](https://help.sap.com/viewer/1d057e05920c4fe38b88e33aaa9eb5ef/7.03.30/en-US/f6daea401675752ae10000000a155106.html) or navigate to [help.sap.com](https://help.sap.com) and search for 'JCo Exceptions'
+
+## Troubbleshooting
+
+__JCO_ERROR_FUNCTION_NOT_FOUND: 'Z_SAMPLE_ABAP_CONNECTOR_CALL' could not be found in the server repository.__
+
+You might get the `com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND`. A typical reason for this error to occur is that you have missed to create
+the function module with the name given in the exception (here `Z_SAMPLE_ABAP_CONNECTOR_CALL`) in the ABAP backend. Although the function module of this example does not
+contain any code it is still required for the use case. JCo needs it to parse its signature and to apply it to the Java 'function' which is registered with `factory.registerHandler(AbapCallHandler.FUNCTION_NAME, abapCallHandler);`.
+
+```
+Exception occured on JCO_SERVER connection 5-R|<fully qualified host name>|sapgw**|JCO_SERVER
+com.sap.conn.jco.JCoException: (123) JCO_ERROR_FUNCTION_NOT_FOUND: 'Z_SAMPLE_ABAP_CONNECTOR_CALL' could not be found in the server repository.
+        at com.sap.conn.jco.rt.AbstractServerConnection.dispatchRequest(AbstractServerConnection.java:1804)
+        at com.sap.conn.jco.rt.AbstractServerConnection.listen(AbstractServerConnection.java:962)
+        at com.sap.conn.jco.rt.CPICServerWorker.dispatch(CPICServerWorker.java:73)
+        at com.sap.conn.jco.rt.AbstractServerWorker.loop(AbstractServerWorker.java:350)
+        at com.sap.conn.jco.rt.AbstractServerWorker.run(AbstractServerWorker.java:316)
+        at java.base/java.lang.Thread.run(Thread.java:1589)
+```
+
+To get rid of this issue just create the function module and make sure its signature (importing-, exporting-, ... -parameters) is as intended.
+

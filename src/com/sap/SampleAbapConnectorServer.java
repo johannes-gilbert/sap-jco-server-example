@@ -114,7 +114,7 @@ public class SampleAbapConnectorServer implements JCoServerErrorListener, JCoSer
    
 	@Override
     public void serverStateChangeOccurred(JCoServer server, JCoServerState oldState, JCoServerState newState) {
-        // Defined states are: STARTED, DEAD, ALIVE, STOPPED;
+        // Defined states are: STARTED, DEAD, ALIVE, STOPPED, STOPPING (and others)
         // see JCoServerState class for details. 
         // Details for connections managed by a server instance
         // are available via JCoServerMonitor
@@ -126,6 +126,9 @@ public class SampleAbapConnectorServer implements JCoServerErrorListener, JCoSer
         if(newState.equals(JCoServerState.STOPPED)) {
         	logger.info("Exit program");
         	System.exit(0);
+        }
+        if(newState.equals(JCoServerState.STOPPING)) {
+        	logger.info("Server is about to stop");
         }
     }
 
